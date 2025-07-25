@@ -9,6 +9,8 @@ import Instructor from "./components/Instructor";
 import CourseLayout from "./components/CourseLayout";
 import CTA from "./components/CTA";
 import PDF from "./components/PDF";
+import LearningPoints from "./components/LearningPoints";
+import CourseDetails from "./components/CourseDetails";
 
 export default async function Page() {
   const res = await fetch(
@@ -24,6 +26,8 @@ export default async function Page() {
 
   const json = await res.json();
   const product : Product = json.data;
+
+  console.log(product);
 
   if (!product) return null;
 
@@ -57,6 +61,12 @@ export default async function Page() {
         </div>
         <div>
           <PDF pdf_section={product.sections}></PDF>
+        </div>
+        <div>
+          <LearningPoints pointers={product.sections}></LearningPoints>
+        </div>
+        <div>
+          <CourseDetails data={product.sections}></CourseDetails>
         </div>
       </section>
     </main>

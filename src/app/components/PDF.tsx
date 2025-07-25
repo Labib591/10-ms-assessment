@@ -26,7 +26,7 @@ export default function PDF({ pdf_section }: { pdf_section: Section[] }) {
           />
           <h2 className="text-xl font-semibold text-white">{pdfFieldValues[0]?.title}</h2>
           <p className="mt-2 text-gray-400">{pdfFieldValues[0]?.description}</p>
-          <button className="mt-6 bg-green-500 rounded-sm px-8 py-2 text-white">{pdfFieldValues[0]?.cta.text}</button>
+          <button className="button">{pdfFieldValues[0]?.cta.text}</button>
         </div>
         <div className="items-center hidden w-1/2 md:flex">
             <Image src={pdfFieldValues[0]?.thumbnail || "/placeholder.png"} alt="img" width={400} height={400}></Image>
