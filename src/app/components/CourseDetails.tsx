@@ -15,11 +15,13 @@ export default function CourseDetails({data} : {data : Section[]}) {
             <h2 className='text-xl font-semibold md:mb-4 md:text-2xl'>
               {details[0]?.name}
             </h2>
-            <div className='rounded-lg py-2 md:border md:px-5 border-gray-200'>
+            <div className='rounded-lg py-2 md:border md:px-5 border-g'>
               {
-                detailsValues.map((item, index) => (
-                  <Accordion key={index} heading={item.title} content={item.description}></Accordion>
-                ))
+                detailsValues
+                  ?.filter((item): item is { title: string; description: string } => typeof item === 'object' && item !== null && 'title' in item && 'description' in item && typeof item.title === 'string' && typeof item.description === 'string')
+                  .map((item, index) => (
+                    <Accordion key={index} heading={item.title} content={item.description}></Accordion>
+                  ))
               }
             </div>
           </div>

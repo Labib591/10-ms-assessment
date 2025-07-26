@@ -3,7 +3,7 @@ import { Section } from "../types/product";
 
 export default function LearningPoints({ pointers }: { pointers: Section[] }) {
   const pointerField = pointers.filter((field) => field.type === "pointers");
-  const pointerValues = pointerField[0]?.values;
+  const pointerValues = pointerField[0]?.values as { text: string }[] || [];
 
   return (
     <div>

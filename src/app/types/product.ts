@@ -13,10 +13,31 @@ export interface ChecklistItem {
 export interface CTA_TEXT {
   name: string;
 }
-export interface Section  {
+
+interface GroupJoinEngagementValue {
+  id: string;
+  title: string;
+  title_color: string;
+  description: string;
+  description_color: string;
+  thumbnail: string;
+  top_left_icon_img: string;
+  background: {
+    image: string;
+    primary_color: string;
+    secondary_color: string;
+  };
+  cta: {
+    text: string;
+    color: string;
+    clicked_url: string;
+  };
+}
+
+export interface Section{
   type: string,
   name: string;
-  values: any[];
+  values: unknown[];
 }
 export interface Product {
   title: string;

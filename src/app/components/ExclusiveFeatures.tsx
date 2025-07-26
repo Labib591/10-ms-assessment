@@ -52,43 +52,58 @@ export default function ExclusiveFeatures({features} : {features : Section[]}) {
         </h2>
         <div className='grid grid-cols-1 px-5 border divide-y rounded-md border-gray-200'>
           {
-            featuresValues.map((feature, index) => (
-              <div key={index} className='flex flex-col items-start justify-between gap-3 py-5 md:flex-row'>
-                <div className='flex flex-col gap-2'>
-                  <h2 className='text-[14px] font-[500px] leading-[30px] text-[#111827] md:text-[16px]'>{feature.title}</h2>
-                    {
-                    feature.checklist.map((item: string, index: number) => (
-                      <div key={index} className='flex flex-row items-center gap-5'>
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 20 20"
-                          aria-hidden="true"
-                          className="mr-1 mt-[2px]"
-                          style={{color:"#6294F8"}}
-                          height="20"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <p className='text-[14px] font-[400px] leading-[24px] text-[#4B5563] md:text-[16px]'>{item}</p>
+            featuresValues.map((feature, index) => {
+              if (
+                typeof feature === 'object' &&
+                feature !== null &&
+                'checklist' in feature &&
+                Array.isArray((feature as { checklist?: unknown }).checklist)
+              ) {
+                const typedFeature = feature as {
+                  checklist: string[];
+                  file_url?: string;
+                  title?: string;
+                };
+                return (
+                  <div key={index} className='flex flex-col items-start justify-between gap-3 py-5 md:flex-row'>
+                    <div className='flex flex-col gap-2'>
+                      <h2 className='text-[14px] font-[500px] leading-[30px] text-[#111827] md:text-[16px]'>{typedFeature.title}</h2>
+                        {
+                        typedFeature.checklist.map((item: string, index: number) => (
+                          <div key={index} className='flex flex-row items-center gap-5'>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              viewBox="0 0 20 20"
+                              aria-hidden="true"
+                              className="mr-1 mt-[2px]"
+                              style={{color:"#6294F8"}}
+                              height="20"
+                              width="20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                            <p className='text-[14px] font-[400px] leading-[24px] text-[#4B5563] md:text-[16px]'>{item}</p>
+                          </div>
+                        ))
+                        }
+                    </div>
+                    <div>
+                      <div className='mb-4 mx-auto max-w-[350px] transition-opacity duration-300 ease-in-out'>
+                        <Image src={typedFeature.file_url || "/placeholder.png"} alt="img" style={{ color: "transparent" }} width={250} height={200}></Image> 
                       </div>
-                    ))
-                    }
-                </div>
-                <div>
-                  <div className='mb-4 mx-auto max-w-[350px] transition-opacity duration-300 ease-in-out'>
-                    <Image src={feature.file_url || "/placeholder.png"} alt="img" style={{ color: "transparent" }} width={250} height={200}></Image> 
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))
+                );
+              }
+              return null;
+            })
           }
         </div>
       </div>

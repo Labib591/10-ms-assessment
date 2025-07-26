@@ -21,13 +21,15 @@ export default function FAQ({ data }: { data: Section[] }) {
           </h2>
           <div className="mb-20 relative">
             <div className="text-black rounded-lg py-2 md:border md:px-5 border-gray-200">
-              {visibleFaqs.map((item, index) => (
-                <Accordion
-                  key={index}
-                  heading={item.question}
-                  content={item.answer}
-                />
-              ))}
+              {visibleFaqs.map((item, index) =>
+                typeof item === "object" && item !== null && "question" in item && "answer" in item ? (
+                  <Accordion
+                    key={index}
+                    heading={String(item.question)}
+                    content={String(item.answer)}
+                  />
+                ) : null
+              )}
             </div>
 
             {faqValues.length > 5 && (

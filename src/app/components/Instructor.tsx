@@ -11,7 +11,13 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
 
   const instructorValues = instructorField[0]?.values;
 
-  if (!instructorValues || !instructorValues[0]?.description) return null;
+  if (
+    !instructorValues ||
+    typeof instructorValues[0] !== "object" ||
+    instructorValues[0] === null ||
+    !("description" in instructorValues[0])
+  )
+    return null;
 
 
   return (
@@ -25,7 +31,11 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
             <div className="flex items-center md:rounded-md md:border md:p-5 md:border-gray-200">
               <div>
                 <Image
-                  src={instructorValues[0]?.image || "/placeholder.png"}
+                  src={
+                    typeof instructorValues[0] === "object" && instructorValues[0] !== null && "image" in instructorValues[0]
+                      ? (instructorValues[0] as { image?: string; name?: string; description?: string }).image || "/placeholder.png"
+                      : "/placeholder.png"
+                  }
                   alt="img"
                   style={{ color: "transparent" }}
                   className="rounded-full"
@@ -34,11 +44,20 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
                 ></Image>
               </div>
               <div className="flex-1 ml-4">
-                <h3 className="text-lg">{instructorValues[0]?.name}</h3>
+                <h3 className="text-lg">
+                  {typeof instructorValues[0] === "object" && instructorValues[0] !== null && "name" in instructorValues[0]
+                    ? (instructorValues[0] as { name?: string }).name
+                    : ""}
+                </h3>
                 <p
                   className="text-sm"
                   dangerouslySetInnerHTML={{
-                    __html: instructorValues[0]?.description ?? " ",
+                    __html:
+                      typeof instructorValues[0] === "object" &&
+                      instructorValues[0] !== null &&
+                      "description" in instructorValues[0]
+                        ? (instructorValues[0] as { description?: string }).description || ''
+                        : " ",
                   }}
                 ></p>
               </div>

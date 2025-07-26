@@ -1,20 +1,21 @@
 "use client";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { IoLanguage } from "react-icons/io5"; // optional, any language icon
+import { usePathname, useRouter } from "next/navigation";
+import { IoLanguage } from "react-icons/io5";
 
 export default function LanguageToggle() {
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname(); // e.g. "/en" or "/bn"
 
-  const currentLang = searchParams.get("lang") ?? "en";
+  const currentLang = pathname.split("/")[1]; // get "en" or "bn"
   const nextLang = currentLang === "en" ? "bn" : "en";
 
   const toggleLanguage = () => {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("lang", nextLang);
-    router.push(`${pathname}?${newParams.toString()}`);
+    // replace the current lang segment in the URL
+    const restOfPath = pathname.split("/").slice(2).join("/");
+    const newPath = `/${nextLang}${restOfPath ? `/${restOfPath}` : ""}`;
+    router.push(newPath);
   };
+
   return (
     <button
       onClick={toggleLanguage}

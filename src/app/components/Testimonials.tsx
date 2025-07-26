@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Section } from "../types/product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation } from "swiper/modules";
@@ -7,9 +7,37 @@ import Image from "next/image";
 import VideoPlayer from "./Videoplayer";
 import ReadMore from "./ReadMore";
 
+// Define types for testimonial media
+interface VideoTestimonial {
+  video_url: string;
+  thumb?: string;
+  profile_image: string;
+  name: string;
+  description: string;
+}
+
+interface TextTestimonial {
+  testimonial: string;
+  profile_image: string;
+  name: string;
+  description: string;
+}
+
+type TestimonialMedia = VideoTestimonial | TextTestimonial;
+
+function isVideoTestimonial(media: TestimonialMedia): media is VideoTestimonial {
+  return (
+    typeof media === "object" &&
+    media !== null &&
+    "video_url" in media &&
+    typeof media.video_url === "string" &&
+    !!media.video_url
+  );
+}
+
 export default function Testimonials({ data }: { data: Section[] }) {
   const testimonials = data.find((item) => item.type === "testimonials");
-  const testimonialsValues = testimonials?.values || [];
+  const testimonialsValues: TestimonialMedia[] = (testimonials?.values as TestimonialMedia[]) || [];
 
   return (
     <div id="testimonials">
@@ -65,17 +93,17 @@ export default function Testimonials({ data }: { data: Section[] }) {
                     </div>
                   </div>
                   <div className="">
-                    {media.video_url ? (
+                    {isVideoTestimonial(media) ? (
                       <div className="w-full mb-4 overflow-hidden rounded-md aspect-video">
                         <VideoPlayer
                           key={index}
-                          videoId={media.video_url || ""}
+                          videoId={media.video_url}
                           thumbnail={media.thumb || ""}
                         />
                       </div>
                     ) : (
                       <div className="w-full mb-4 overflow-hidden rounded-md h-[200px] relative">
-                        <ReadMore text={media.testimonial} maxChars={250} />
+                        <ReadMore text={(media as TextTestimonial).testimonial} maxChars={250} />
                       </div>
                     )}
                   </div>
