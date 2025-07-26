@@ -11,6 +11,9 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
 
   const instructorValues = instructorField[0]?.values;
 
+  if (!instructorValues || !instructorValues[0]?.description) return null;
+
+
   return (
     <div>
       <div id="instructor">
@@ -19,7 +22,7 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
             <h2 className="mb-4 text-xl font-semibold md:text-2xl">
               {instructorField[0]?.name}
             </h2>
-            <div className="flex items-center md:rounded-md md:border md:p-5">
+            <div className="flex items-center md:rounded-md md:border md:p-5 md:border-gray-200">
               <div>
                 <Image
                   src={instructorValues[0]?.image || "/placeholder.png"}
@@ -35,7 +38,7 @@ export default function Instructor({ instructor }: { instructor: Section[] }) {
                 <p
                   className="text-sm"
                   dangerouslySetInnerHTML={{
-                    __html: instructorValues[0]?.description,
+                    __html: instructorValues[0]?.description ?? " ",
                   }}
                 ></p>
               </div>

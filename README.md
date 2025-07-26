@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+````md
+# 🚀 Project Name
 
-## Getting Started
+A production ready webpage for 10MS Ielts Preparation Course
 
-First, run the development server:
+---
+
+## 📦 Tech Stack
+
+- **Framework:** Next.js
+- **Language:**  TypeScript
+- **Styling:** Tailwind CSS / CSS Modules
+- **Deployment Ready:** Production build supported
+
+---
+
+## 📁 Project Structure
+
+```bash
+.
+├── app/ or pages/         # Route handlers
+├── components/            # UI components
+├── public/                # Static files
+├── styles/                # Global and component styles
+├── types/                 # TypeScript interfaces (if used)
+├── Dockerfile             # (Optional) Docker setup
+├── next.config.js         # Next.js configuration
+├── package.json           # Project dependencies and scripts
+└── README.md              # You're here!
+````
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run in Development Mode
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Build for Production
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+This runs the optimized Next.js production server.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧪 Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Command         | Description                         |
+| --------------- | ----------------------------------- |
+| `npm run dev`   | Run in development mode             |
+| `npm run build` | Build for production                |
+| `npm start`     | Start production server             |
+| `npm run lint`  | Lint the code (if ESLint is set up) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🙋‍♂️ Author
+
+* [Your Name](https://github.com/your-username)
+
+---
+
+## 📜 License
+
+[MIT](LICENSE) – feel free to use and modify.
+
+```
+
+---

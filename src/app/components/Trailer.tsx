@@ -17,7 +17,7 @@ export default function Trailer({ product }: { product: Media[] }) {
 
   return (
     <div>
-      <div className="hidden p-1 md:block">
+      <div className="w-full h-full">
         <div className="h-full transition-opacity duration-300 ease-in-out">
           <Swiper modules={[Navigation]} navigation height={360} className="w-full">
             {filteredMedia.map((media, index) => (
