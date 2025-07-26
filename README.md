@@ -81,14 +81,6 @@ This runs the optimized Next.js production server.
 
 ## 🙋‍♂️ Author
 
-* [Your Name](https://github.com/your-username)
-
----
-
-## 📜 License
-
-[MIT](LICENSE) – feel free to use and modify.
-
-```
+Mahir Mohammed Labib
 
 ---
