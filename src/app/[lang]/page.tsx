@@ -91,7 +91,7 @@ export default async function Page({
       <div className="flex justify-end p-4">
         <LanguageToggle />
       </div>
-      <section className='bg-[url("/ui_(1)_1716445506383.jpeg")] bg-cover bg-center md:min-h-[300px] min-h-[300px] lg:px-20 py-10 px-10'>
+      <section className='bg-[url("/ui_%281%29_1716445506383.jpeg")] bg-cover bg-center md:min-h-[300px] min-h-[300px] lg:px-20 py-10 px-10'>
         <div className="max-w-[1440px] mx-auto container relative flex flex-col gap-4 md:flex-row md:gap-12 pb-6 md:py-10 min-h-[300px]">
           <div className="order-1 flex flex-col justify-center flex-1 md:order-1 md:max-w-[calc(100%_-_348px)] lg:max-w-[calc(100%_-_448px)]">
             {/* Mobile-only Trailer */}
